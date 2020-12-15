@@ -77,20 +77,20 @@ def range_search(vector_data, to_compare, r):
     return result
 
 if __name__ == "__main__":
-    files = get_files('./lfw_6400')
+    files = get_files('./lfw_100')
     vectors = calculate_vectors(files)
-    ind = create_index(vectors, 'ind_6400')
+    ind = create_index(vectors, 'ind_100')
     start = time.time()
     for j in range(10):
         for i in range(10):
-            res = list(ind.nearest(coordinates=np.append(vectors[i*640][1],vectors[i*640][1]), num_results=8))
+            res = list(ind.nearest(coordinates=np.append(vectors[i*10][1],vectors[i*10][1]), num_results=8))
             print(res)
     end = time.time()
     print("Time consumed in working: ",end - start)
     start = time.time()
     for j in range(10):
         for i in range(10):
-            res = knn_seq(vectors, vectors[i*640][1], 8)
+            res = knn_seq(vectors, vectors[i*10][1], 8)
             print(res)
     end = time.time()
     print("Time consumed in working: ",end - start)
